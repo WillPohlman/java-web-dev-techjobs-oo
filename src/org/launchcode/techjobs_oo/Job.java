@@ -1,5 +1,7 @@
 package org.launchcode.techjobs_oo;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
 
 public class Job {
@@ -29,6 +31,35 @@ public class Job {
         this.location = location;
         this.positionType = positionType;
         this.coreCompetency = coreCompetency;
+    }
+
+    @Override
+    public String toString(){
+        if(name==null&&employer==null&&location==null&&positionType==null&&coreCompetency==null){
+            return "OOPS! This job does not seem to exist.";
+        }else
+        {
+            LinkedHashMap<String, Object> fields = new LinkedHashMap<>();
+            fields.put("Name: ", name);
+            fields.put("Employer: ", employer);
+            fields.put("Location: ", location);
+            fields.put("Position Type: ", positionType);
+            fields.put("Core Competency: ", coreCompetency);
+
+            String result = "\nID: ";
+            result += id;
+            for (Map.Entry<String, Object> field : fields.entrySet())
+            {
+                result += "\n" + field.getKey();
+                if(field.getValue().toString().equals("")){
+                    result += "Data not available";
+                }else{
+                    result += field.getValue();
+                }
+            }
+            result += "\n";
+            return result;
+        }
     }
 
     // Done: Add custom equals and hashCode methods. Consider two Job objects "equal" when their id fields

@@ -38,4 +38,14 @@ public class JobTest
 
         assertFalse(equalJob1.equals(equalJob2));
     }
+
+    @Test
+    public void testJobToStringMethod(){
+        Job toStringJob = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency(""));
+        String expectedResult = "\nID: " + toStringJob.getId() + "\nName: Product tester\nEmployer: ACME\nLocation: Desert\nPosition Type: Quality control\nCore Competency: Data not available\n";
+        assertTrue(toStringJob.toString().equals(expectedResult));
+
+        Job emptyJob = new Job();
+        assertTrue(emptyJob.toString().equals("OOPS! This job does not seem to exist."));
+    }
 }
